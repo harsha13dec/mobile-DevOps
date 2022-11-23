@@ -6,3 +6,5 @@ checking if automatic build trigger works.
 
 
 checking version 2
+
+checking another version to see if versioning works
