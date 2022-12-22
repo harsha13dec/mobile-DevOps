@@ -1,0 +1,50 @@
+# Xamarin.iOS
+# Build a Xamarin.iOS app and Xamarin.UITest assembly.
+# Add steps that install certificates, test, sign, and distribute the app, save build artifacts, and more:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/xamarin
+
+pool:
+  vmImage: 'macOS-latest'
+variables:
+- group: 'variables'
+
+steps:
+# To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
+# https://go.microsoft.com/fwlink/?linkid=871629
+- script: /bin/bash -c "sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_16"
+  displayName: 'Select Xamarin SDK version'
+  enabled: true
+
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '**/*iOS.csproj'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'Applepp.mobileprovision'
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'Applecert'
+
+
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'Applecert'
+    certPwd: '$(AppleCertificate-Password)'
+    keychain: 'temp'
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'Applepp.mobileprovision'
+
+- task: XamariniOS@2
+  inputs:
+    solutionFile: '**/*iOS.csproj'
+    configuration: 'Release'
+    packageApp: true
+    runNugetRestore: true
+    signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
+    signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
+
