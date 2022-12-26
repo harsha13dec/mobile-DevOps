@@ -23,21 +23,21 @@ steps:
 
 - task: DownloadSecureFile@1
   inputs:
-    secureFile: 'Applepp.mobileprovision'
+    secureFile: '$(ProvisioningProfile-FileName)'
 - task: DownloadSecureFile@1
   inputs:
-    secureFile: 'Applecert'
+    secureFile: '$(AppleCertificate-FileName)'
 
 
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'Applecert'
+    certSecureFile: '$(AppleCertificate-FileName)'
     certPwd: '$(AppleCertificate-Password)'
     keychain: 'temp'
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'Applepp.mobileprovision'
+    provProfileSecureFile: '$(ProvisioningProfile-FileName)'
 
 - task: XamariniOS@2
   inputs:
