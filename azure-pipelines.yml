@@ -5,6 +5,8 @@
 
 pool:
   vmImage: 'macOS-latest'
+trigger:
+- dev
 variables:
 - group: 'variables'
 
