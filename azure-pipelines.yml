@@ -17,11 +17,7 @@ steps:
 - script: /bin/bash -c "sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_16"
   displayName: 'Select Xamarin SDK version'
   enabled: true
-- task: FileTransform@1
-  inputs:
-    folderPath: '$(System.DefaultWorkingDirectory)/**/*.zip.'
-    fileType: 'json'
-    targetFiles: '**/*.json'
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
