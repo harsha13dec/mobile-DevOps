@@ -19,7 +19,7 @@ steps:
   enabled: true
 - task: FileTransform@1
   inputs:
-    folderPath: '$(System.DefaultWorkingDirectory)/Tips'
+    folderPath: '$(System.DefaultWorkingDirectory)'
     fileType: 'json'
     targetFiles: '**/*.json'
 - task: NuGetToolInstaller@1
