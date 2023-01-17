@@ -19,7 +19,7 @@ steps:
   enabled: true
 - task: FileTransform@1
   inputs:
-    folderPath: '$(System.DefaultWorkingDirectory)/**'
+    folderPath: '$(System.DefaultWorkingDirectory)/CICD/CICD.iOS/'
     fileType: 'json'
     targetFiles: '**/*.json'
 - task: NuGetToolInstaller@1
