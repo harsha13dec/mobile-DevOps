@@ -21,7 +21,7 @@ steps:
   inputs:
     folderPath: '$(System.DefaultWorkingDirectory)/CICD/CICD.iOS/'
     fileType: 'json'
-    targetFiles: '**/*.json'
+    targetFiles: 'settings.json'
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
