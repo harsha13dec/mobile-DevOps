@@ -47,7 +47,7 @@ steps:
     provProfileSecureFile: '$(ProvisioningProfile-FileName)'
 - task: ios-bundle-version@1
   inputs:
-    sourcePath: '$(System.DefaultWorkingDirectory)'
+    sourcePath: 'CICD/CICD,iOS/Info.plist'
     versionCodeOption: 'buildid'
     versionCode: '$(Build.BuildId)'
     printFile: true
