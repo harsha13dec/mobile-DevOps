@@ -45,7 +45,12 @@ steps:
   inputs:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: '$(ProvisioningProfile-FileName)'
-
+- task: ios-bundle-version@1
+  inputs:
+    sourcePath: '$(System.DefaultWorkingDirectory)'
+    versionCodeOption: 'buildid'
+    versionCode: '$(Build.BuildId)'
+    printFile: true
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*.sln'
