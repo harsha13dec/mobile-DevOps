@@ -19,7 +19,7 @@ steps:
   enabled: true
 - task: FileTransform@1
   inputs:
-    folderPath: '$(System.DefaultWorkingDirectory)/CICD/CICD.iOS/'
+    folderPath: 'bbmca/bbmca/Constants/settings.json'
     fileType: 'json'
     targetFiles: 'settings.json'
 - task: NuGetToolInstaller@1
