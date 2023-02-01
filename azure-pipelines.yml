@@ -48,7 +48,9 @@ steps:
 - task: ios-bundle-version@1
   inputs:
     sourcePath: 'CICD/CICD.iOS/Info.plist'
-    versionCodeOption: 'timestamp'
+    versionCodeOption: 'buildid'
+    versionCode: '$(Build.BuildId)'
+    versionName: '1.1.$(Build.BuildId)'
     printFile: true
 - task: XamariniOS@2
   inputs:
