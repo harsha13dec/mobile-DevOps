@@ -52,6 +52,11 @@ steps:
     versionCode: '$(Build.BuildId)'
     versionName: '1.1.$(Build.BuildId)'
     printFile: true
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQube-xamarin-ios'
+    scannerMode: 'MSBuild'
+    projectKey: 'xamarin-ios_xamarin-ios_AYYV8-41stQhhO4Rt8n0'
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*.sln'
@@ -60,6 +65,11 @@ steps:
     runNugetRestore: true
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
+- task: SonarQubeAnalyze@5
+
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
 - task: CopyFiles@2
   inputs:
     contents: '**/*.ipa'
