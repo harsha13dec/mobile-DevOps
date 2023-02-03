@@ -6,6 +6,9 @@
 pool:
   vmImage: 'macOS-latest'
 
+trigger:
+- main
+
 variables:
 - group: 'variables'
 - group: jsonvariablegroup
@@ -55,8 +58,10 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'sonar-ios-connection'
-    scannerMode: 'MSBuild'
-    projectKey: 'xamarin-ios_xamarin-ios_AYYV8-41stQhhO4Rt8n0'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'xamarin-ios_xamarin-ios_AYYWwS0pstQhhO4Rt8oK'
+    cliSources: '.'
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*.sln'
