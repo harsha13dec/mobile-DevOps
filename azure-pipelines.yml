@@ -7,7 +7,7 @@ pool:
   vmImage: 'macOS-latest'
 
 trigger:
-- master
+- main
 
 variables:
 - group: 'variables'
@@ -65,7 +65,7 @@ steps:
       # Additional properties that will be passed to the scanner, 
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
-      sonar.branch.name=master
+      sonar.branch.name='main'
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*.sln'
