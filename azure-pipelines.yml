@@ -58,8 +58,11 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'sonar-ios-connection'
-    scannerMode: 'MSBuild'
-    projectKey: 'xamarin-ios_xamarin-ios_AYYWwS0pstQhhO4Rt8oK'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'xamarin-ios_xamarin-ios_AYYWwS0pstQhhO4Rt8oK'
+    cliProjectName: 'xamarin-ios'
+    cliSources: '.'
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*.sln'
