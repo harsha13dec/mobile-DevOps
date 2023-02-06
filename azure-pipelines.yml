@@ -58,11 +58,14 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'sonar-ios-connection'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'xamarin-ios_xamarin-ios_AYYWwS0pstQhhO4Rt8oK'
-    cliProjectName: 'xamarin-ios'
-    cliSources: '.'
+    scannerMode: 'MSBuild'
+    projectKey: 'xamarin-ios_xamarin-ios_AYYWwS0pstQhhO4Rt8oK'
+    projectName: 'xamarin-ios'
+    extraProperties: |
+      # Additional properties that will be passed to the scanner, 
+      # Put one key=value per line, example:
+      # sonar.exclusions=**/*.bin
+      sonar.branch.name=main
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*.sln'
