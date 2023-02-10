@@ -9,6 +9,8 @@ pool:
 trigger:
 - master
 
+pr: none
+
 variables:
 - group: 'variables'
 - group: jsonvariablegroup
