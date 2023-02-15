@@ -8,9 +8,12 @@ pool:
 
 trigger:
 - master
+- main
 
-pr: none
-
+pr:
+  branches:
+    include:
+      - master
 variables:
 - group: 'variables'
 - group: jsonvariablegroup
@@ -28,19 +31,15 @@ steps:
     fileType: 'json'
     targetFiles: 'settings.json'
 - task: NuGetToolInstaller@1
-
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/*.sln'
-
 - task: DownloadSecureFile@1
   inputs:
     secureFile: '$(ProvisioningProfile-FileName)'
 - task: DownloadSecureFile@1
   inputs:
     secureFile: '$(AppleCertificate-FileName)'
-
-
 - task: InstallAppleCertificate@2
   inputs:
     certSecureFile: '$(AppleCertificate-FileName)'
@@ -57,16 +56,6 @@ steps:
     versionCode: '$(Build.BuildId)'
     versionName: '1.1.$(Build.BuildId)'
     printFile: true
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'sonar-ios-connection'
-    scannerMode: 'MSBuild'
-    projectKey: 'xamarin-ios_xamarin-ios_AYYWwS0pstQhhO4Rt8oK'
-    projectName: 'xamarin-ios'
-    extraProperties: |
-      # Additional properties that will be passed to the scanner, 
-      # Put one key=value per line, example:
-      # sonar.exclusions=**/*.bin
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*.sln'
@@ -75,11 +64,6 @@ steps:
     runNugetRestore: true
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
-- task: SonarQubeAnalyze@5
-
-- task: SonarQubePublish@5
-  inputs:
-    pollingTimeoutSec: '300'
 - task: CopyFiles@2
   inputs:
     contents: '**/*.ipa'
