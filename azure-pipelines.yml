@@ -8,6 +8,8 @@ pool:
 
 trigger:
 - master
+- develop
+- main
 
 variables:
 - group: 'variables'
