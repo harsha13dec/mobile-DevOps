@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/xamarin
 
 pool:
-  vmImage: 'macOS-latest'
+  vmImage: 'windows-latest'
 
 trigger:
 - master
