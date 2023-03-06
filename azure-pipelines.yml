@@ -73,6 +73,8 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(build.artifactStagingDirectory)' 
-    artifactName: 'drop' 
-    publishLocation: 'Container'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'FilePath'
+    TargetPath: '\\my\cs-harsha13december-live-com-100320023f1baed8\$(Build.DefinitionName)\$(Build.BuildNumber'
+    Parallel: true
